@@ -17,13 +17,19 @@ class Solution{
         
         vector<int> ans;
         
-        for(int i=0;i<n;i++)
+        // for(int i=0;i<n;i++)
+        // {
+        //     if(m[arr[i]] > 1)
+        //     {
+        //         ans.push_back(arr[i]);
+        //         m[arr[i]] = 1;
+        //     }
+        // }
+        
+        for(auto x:m)
         {
-            if(m[arr[i]] > 1)
-            {
-                ans.push_back(arr[i]);
-                m[arr[i]] = 1;
-            }
+            if(x.second > 1)
+                ans.push_back(x.first);
         }
         sort(ans.begin(), ans.end());
         if(ans.size() > 0)
