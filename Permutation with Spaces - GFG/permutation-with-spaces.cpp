@@ -23,8 +23,9 @@ public:
         op1.push_back(s[i]);
         op1.push_back(' ');
         
-        solve(i+1, s, ans, n, op);
         solve(i+1, s, ans, n, op1);
+        solve(i+1, s, ans, n, op);
+        
         
     }
     vector<string> permutation(string S){
@@ -32,7 +33,7 @@ public:
         vector<string> ans;
         
         solve(0, S, ans, S.length()-1,"");
-        sort(ans.begin(), ans.end());
+        //sort(ans.begin(), ans.end());
         return ans;
     }
 };
