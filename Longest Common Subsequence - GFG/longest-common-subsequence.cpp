@@ -15,14 +15,18 @@ class Solution
     {
         if(i == x || j == y)
             return 0;
-        
+            
         if(dp[i][j] != -1)
             return dp[i][j];
-            
+        
+        int take = 0, notake = 0;
         if(s1[i] == s2[j])
-            return dp[i][j] = 1 + solve(i+1, j+1, x, y, s1, s2, dp);
+            take = 1 + solve(i+1, j+1, x,y,s1,s2,dp);
             
-        return dp[i][j] = max(solve(i+1, j, x, y, s1,s2, dp), solve(i, j+1, x, y, s1, s2, dp));
+        else
+            notake = max( solve(i+1, j, x, y, s1, s2, dp) , solve(i, j+1, x, y, s1, s2, dp));
+            
+        return dp[i][j] = max(take, notake);
     }
     int lcs(int x, int y, string s1, string s2)
     {
