@@ -12,29 +12,26 @@ class Solution
     {
         // Your code here
         vector<pair<int, int>> v;
+        
         for(int i=0;i<n;i++)
-        {
             v.push_back(make_pair(end[i], start[i]));
-        }
-        
-        
+            
         sort(v.begin(), v.end());
         
-        int ans = 1;
-        int e = v[0].first;
+        int front = v[0].first;
         
-        for(int i=1;i<n;i++)
+        int count = 1;
+        
+        for(int i = 1;i<n;i++)
         {
-            if(v[i].second > e)
+            if(front < v[i].second)
             {
-                //cout<<v[i].first<<" "<<v[i].second<<endl;
-                ans++;
-                e = v[i].first;
+                count++;
+                front = v[i].first;
             }
         }
         
-        return ans;
-        
+        return count;
     }
 };
 
