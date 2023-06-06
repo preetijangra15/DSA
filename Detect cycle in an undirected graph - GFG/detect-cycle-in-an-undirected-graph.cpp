@@ -38,8 +38,47 @@ class Solution {
         
         return false;
     }
+    
+    bool cycleDFS(int node, int parent, unordered_map<int, bool>& visited, vector<int> adj[])
+    {
+        visited[node] = true;
+        
+        for(auto x: adj[node])
+        {
+            if(!visited[x])
+            {
+                bool cycleDetected = cycleDFS(x, node, visited, adj);
+                if(cycleDetected)
+                    return true;
+            }
+            
+            else if(x != parent)
+                return true;
+        }
+        
+        return false;
+    }
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
+        
+        
+        ///////BFS CODE/////
+        // unordered_map<int, bool> visited;
+        // for(int i = 0; i < V; i++)
+        // {
+        //     if(!visited[i])
+        //     {
+        //         bool ans = bfs(i, adj, visited);
+            
+        //         if(ans)
+        //             return true;
+        //     }
+        // }
+        
+        // return false;
+        
+        
+        ////////DFS CODE//////
         
         unordered_map<int, bool> visited;
         
@@ -47,9 +86,9 @@ class Solution {
         {
             if(!visited[i])
             {
-                bool ans = bfs(i, adj, visited);
-            
-                if(ans)
+                bool cycleDetected = cycleDFS(i, -1, visited, adj);
+                
+                if(cycleDetected)
                     return true;
             }
         }
