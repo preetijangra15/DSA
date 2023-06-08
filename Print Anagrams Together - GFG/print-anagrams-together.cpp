@@ -10,28 +10,27 @@ using namespace std;
 
 class Solution{
   public:
-    vector<vector<string> > Anagrams(vector<string>& arr) {
+    vector<vector<string> > Anagrams(vector<string>& grid) {
         //code here
-        unordered_map<string, vector<string> > mp;
-        
-        int n = arr.size();
-        
-        for(int i=0;i<n;i++)
-        {
-            string s = arr[i];
-            
-            sort(s.begin(), s.end());
-            
-            mp[s].push_back(arr[i]);
-        }
         
         vector<vector<string>> ans;
-        for(auto x:mp)
+        
+        unordered_map<string, vector<string>> mp;
+        
+        int n = grid.size();
+        
+        for(int i = 0;i <n;i++)
         {
-            vector<string> v = x.second;
-            ans.push_back(v);
+            string str = grid[i];
+            
+            sort(str.begin(), str.end());
+            mp[str].push_back(grid[i]);
         }
         
+        for(auto x: mp)
+            ans.push_back(x.second);
+            
+            
         return ans;
     }
 };
