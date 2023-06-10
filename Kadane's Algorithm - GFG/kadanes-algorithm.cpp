@@ -11,31 +11,19 @@ class Solution{
     //Function to find the sum of contiguous subarray with maximum sum.
     long long maxSubarraySum(int arr[], int n){
         
-        int res = arr[0];
-        int maxEnding = arr[0];
+        // Your code here
+        long long int sum = arr[0];
+        long long int ans = arr[0];
         
-        for(int i=1;i<n;i++)
+        for(int i = 1;i<n;i++)
         {
-            maxEnding = max(maxEnding + arr[i], arr[i]);
-            res = max(res, maxEnding);
+            long long int x = arr[i];
+            sum = max(sum+arr[i], x);
+            ans = max(ans, sum);
         }
         
-        return res;
-      
+        return ans;
     }
-    
-    
-    // int res = arr[0];
-        // int maxEnding = arr[0];
-        
-        // for(int i=1;i<n;i++)
-        // {
-        //     maxEnding = max(maxEnding + arr[i], arr[i]);
-        //     res = max(res, maxEnding);
-        // }
-        
-        // return res;
-        
 };
 
 //{ Driver Code Starts.
