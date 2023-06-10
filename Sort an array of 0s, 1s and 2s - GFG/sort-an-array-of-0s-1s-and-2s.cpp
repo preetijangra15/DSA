@@ -12,45 +12,64 @@ class Solution
     {
         // code here 
         
-        vector<int> v;
+        // vector<int> v;
         
-        int countz = 0, counto = 0, countt = 0;
+        // int countz = 0, counto = 0, countt = 0;
         
-        for(int i=0;i<n;i++)
-        {
-            if(arr[i] == 0)
-                countz++;
+        // for(int i=0;i<n;i++)
+        // {
+        //     if(arr[i] == 0)
+        //         countz++;
                 
-            else if(arr[i] == 1)
-                counto++;
+        //     else if(arr[i] == 1)
+        //         counto++;
                 
-            else
-                countt++;
-        }
+        //     else
+        //         countt++;
+        // }
         
-        while(countz)
-        {
-            v.push_back(0);
-            countz--;
-        }
+        // while(countz)
+        // {
+        //     v.push_back(0);
+        //     countz--;
+        // }
         
-        while(counto)
-        {
-            v.push_back(1);
-            counto--;
-        }
+        // while(counto)
+        // {
+        //     v.push_back(1);
+        //     counto--;
+        // }
         
-        while(countt)
-        {
-            v.push_back(2);
-            countt--;
-        }
+        // while(countt)
+        // {
+        //     v.push_back(2);
+        //     countt--;
+        // }
         
         
-        for(int i=0;i<n;i++)
-            arr[i] = v[i];
+        // for(int i=0;i<n;i++)
+        //     arr[i] = v[i];
             
-        //return arr;
+        
+        int low = 0, mid = 0, high = n-1;
+        
+        while(mid <= high)
+        {
+            if(arr[mid] == 0)
+            {
+                swap(arr[low], arr[mid]);
+                low++;
+                mid++;
+            }
+            
+            else if(arr[mid] == 1)
+                mid++;
+                
+            else{
+                swap(arr[mid], arr[high]);
+                high--;
+            }
+        }
     }
     
 };
