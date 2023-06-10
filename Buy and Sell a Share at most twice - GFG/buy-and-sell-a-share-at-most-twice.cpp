@@ -7,30 +7,34 @@ using namespace std;
 // } Driver Code Ends
 //User function Template for C++
 
-int solve(vector<int>& price, int i, int n, bool flag, int k, vector<vector<int>>& memo)
+int solve(vector<int>& price, int n, int i, int k, bool flag, vector<vector<int>>& dp)
 {
     if(i == n || k == 0)
         return 0;
-        
-    int take = 0, notake = 0;
-    if(memo[i][k] != -1)
-        return memo[i][k];
-        
-    if(flag == true)
-        take += -price[i] + solve(price, i+1, n, false, k-1, memo);
-        
-    else 
-        take += price[i] + solve(price, i+1,n,true,k-1, memo);
-        
-    notake = solve(price, i+1, n, flag, k, memo);
     
-    return memo[i][k] = max(take, notake);
+    if(dp[i][k] != -1)
+        return dp[i][k];
+        
+    int pick = INT_MIN, notpick = INT_MIN;
+    
+    if(flag)
+     pick = -price[i] + solve(price, n, i+1, k-1, !flag, dp);
+     
+    if(!flag)
+        pick = price[i] + solve(price, n, i+1, k-1, !flag, dp);
+        
+    notpick = solve(price, n, i+1, k, flag, dp);
+    
+    return dp[i][k] = max(pick, notpick);
 }
+
 int maxProfit(vector<int>&price){
-    //Write your code here..
-    vector<vector<int>> memo(price.size(),vector<int>(5,-1));
+    //Write your code here
+    
     int n = price.size();
-    return solve(price, 0, n, true, 4, memo);
+    vector<vector<int>> dp(n+1, vector<int>(5, -1));
+    
+    return solve(price, n, 0, 4, true, dp);
 }
 
 //{ Driver Code Starts.
