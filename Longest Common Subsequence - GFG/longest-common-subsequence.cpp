@@ -18,15 +18,15 @@ class Solution
             
         if(dp[i][j] != -1)
             return dp[i][j];
+        int pick = INT_MIN, notpick = INT_MIN; 
         
-        int take = 0, notake = 0;
         if(s1[i] == s2[j])
-            take = 1 + solve(i+1, j+1, x,y,s1,s2,dp);
+            pick = 1 + solve(i+1, j+1, x, y, s1, s2, dp);
             
         else
-            notake = max( solve(i+1, j, x, y, s1, s2, dp) , solve(i, j+1, x, y, s1, s2, dp));
+            notpick = max(solve(i+1, j, x, y, s1, s2, dp), solve(i, j+1, x, y, s1, s2, dp));
             
-        return dp[i][j] = max(take, notake);
+        return dp[i][j] = max(pick, notpick);
     }
     int lcs(int x, int y, string s1, string s2)
     {
