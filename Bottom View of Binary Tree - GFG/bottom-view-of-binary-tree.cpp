@@ -99,7 +99,7 @@ class Solution {
         // Your Code Here
         vector<int> ans;
         
-        if(root == NULL)
+        if(!root)
             return ans;
             
         queue<pair<Node*, int>> q;
@@ -108,15 +108,14 @@ class Solution {
         
         while(!q.empty())
         {
-            Node* node = q.front().first;
+            Node* temp = q.front().first;
             int x = q.front().second;
-            
             q.pop();
             
-            if(node-> left) q.push({node->left, x-1});
-            if(node->right) q.push({node->right, x+1});
+            if(temp->left) q.push({temp->left, x-1});
+            if(temp->right) q.push({temp->right, x+1});
             
-            mp[x] = node->data;
+            mp[x] = temp->data;
         }
         
         for(auto x:mp)
