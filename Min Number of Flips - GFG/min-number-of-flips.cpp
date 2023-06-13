@@ -22,44 +22,33 @@ int minFlips (string s)
 {
     // your code here
     
-    int n = s.size();
-    
-    string str = "";
-    
-    for(int i=0;i<n;i++)
-    {
-        if(i%2 == 0)
-            str.push_back('1');
-            
-        else
-            str.push_back('0');
-    }
-    
-    string str1 = "";
-    
-    for(int i=0;i<n;i++)
-    {
-        if(i%2 == 0)
-            str1.push_back('0');
-            
-        else
-            str1.push_back('1');
-    }
-    
-    int cnt = 0, c = 0;
-    
-    for(int i=0;i<n;i++)
-    {
-        if(s[i] != str[i])
-            cnt++;
-    }
-    
-    for(int i=0;i < n;i++)
-    {
-        if(s[i] != str1[i])
-            c++;
-    }
-    
-    return min(cnt, c);
-    
+    int first=0, second=0;
+     for(int i=0; i<s.length(); i++)
+     {
+         if(i%2==0)
+         {
+             if(s[i]!='0')
+             first++;
+         }
+         else
+         {
+             if(s[i]!='1')
+             first++;
+         }
+         
+         if(i%2==0)
+         {
+             if(s[i]!='1')
+             second++;
+         }
+         else
+         {
+             if(s[i]!='0')
+             second++;
+         }
+         
+     }
+     
+     //cout<<first<<" "<<second<<endl;
+     return min(first,second);
 }
