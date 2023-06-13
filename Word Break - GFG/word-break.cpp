@@ -16,15 +16,32 @@ class Solution
 public:
     int solve(int id, string& A, vector<string>& B)
     {
+        // string ans = "";
+        
+        // if(id >= A.size())
+        //     return 1;
+            
+        // for(int i = id; i < A.size(); i ++)
+        // {
+        //     ans += A[i];
+            
+        //     if(find(B.begin(), B.end(), ans) != B.end())
+        //     {
+        //         if(1 && solve(i+1, A, B))
+        //             return true;
+        //     }
+        // }
+        
+        // return 0;
+        
         string ans = "";
         
         if(id >= A.size())
             return 1;
-            
-        for(int i = id; i < A.size(); i ++)
+        
+        for(int i = id; i< A.size(); i++)
         {
             ans += A[i];
-            
             if(find(B.begin(), B.end(), ans) != B.end())
             {
                 if(1 && solve(i+1, A, B))
@@ -32,7 +49,8 @@ public:
             }
         }
         
-        return 0;
+        return false;
+        
     }
     int wordBreak(string A, vector<string> &B) {
         //code here
