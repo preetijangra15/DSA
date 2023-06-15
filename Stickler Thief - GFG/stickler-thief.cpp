@@ -9,6 +9,25 @@ class Solution
     public:
     //Function to find the maximum money the thief can get.
     
+    int solve(int arr[], int i, int n, vector<int>& dp){
+        if(i >= n)
+            return 0;
+        
+        if(dp[i] != -1)
+            return dp[i];
+            
+        int pick = arr[i] + solve(arr, i+2, n, dp);
+        int notpick = solve(arr, i+1, n, dp);
+        
+        return dp[i] = max(pick, notpick);
+    }
+    int FindMaxSum(int arr[], int n)
+    {
+        // Your code here
+        
+        vector<int> dp(n+1, -1);
+        return solve(arr, 0, n, dp);
+    }
 };
 
 //{ Driver Code Starts.
