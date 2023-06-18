@@ -48,22 +48,18 @@ class Solution
     //Function to check if the linked list has a loop.
     bool detectLoop(Node* head)
     {
-        Node *temp;
-        Node *curr = head;
+        // your code here
         
-        while(curr != NULL)
-        {
-            if(curr->next == NULL)
-                return false;
-                
-            if(curr -> next == temp)
+        Node* fast = head;
+        Node* slow = head;
+        
+        while(fast && fast -> next){
+            
+            slow = slow -> next;
+            fast = fast -> next -> next;
+            
+            if(fast == slow)
                 return true;
-                
-            Node *curr_next = curr->next;
-            curr ->next  = temp;
-            
-            curr = curr_next;
-            
         }
         
         return false;
