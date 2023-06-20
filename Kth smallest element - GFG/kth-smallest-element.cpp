@@ -17,10 +17,16 @@ class Solution{
         //code here
         //cout<<r<<endl;
         
-        int n = r + 1;
-        sort(arr, arr+n);
+        priority_queue<int> pq;
         
-        return arr[k-1];
+        for(int i = l;i <= r;i++)
+        {
+            pq.push(arr[i]);
+            if(pq.size() > k)
+                pq.pop();
+        }
+        
+        return pq.top();
     }
 };
 
