@@ -19,73 +19,73 @@ public:
         //Write your code here
         
         
-        sort(X.begin(),X.end(),greater<int>());
-        sort(Y.begin(),Y.end(),greater<int>());
+        // sort(X.begin(),X.end(),greater<int>());
+        // sort(Y.begin(),Y.end(),greater<int>());
         
-        int answer = 0;
-        int i = 0;
-        int j = 0;
-        int hzc=1;
-        int vc = 1;
-        while(i<M-1 && j< N-1){
-            if(X[i]>Y[j]){
-                answer += X[i]*vc;
-                i++;
-                hzc++;
-            }
-            else{
-                answer+= Y[j]*hzc;
-                vc++;
-                j++;
-            }
-        }
-        while(i<M-1){
-            answer+=X[i]*vc;
-            i++;
-            hzc++;
-            
-        }
-         while(j<N-1){
-            answer+=Y[j]*hzc;
-            j++;
-            vc++;
-            
-        }
-        return answer;
-        
-        
-        // sort(X.begin(), X.end(), greater<int>());
-        // sort(Y.begin(), Y.end(), greater<int>());
-        
-        // int i = 0, j = 0, hzc = 1, vc = 1;
-        // int ans = 0;
-        
-        // while(i < M-1 && j < N-1){
-        //     if(X[i] > Y[j]){
-        //         ans += X[i]*vc;
+        // int answer = 0;
+        // int i = 0;
+        // int j = 0;
+        // int hzc=1;
+        // int vc = 1;
+        // while(i<M-1 && j< N-1){
+        //     if(X[i]>Y[j]){
+        //         answer += X[i]*vc;
         //         i++;
         //         hzc++;
         //     }
         //     else{
-        //         ans += Y[j]*hzc;
+        //         answer+= Y[j]*hzc;
         //         vc++;
         //         j++;
-                
         //     }
         // }
-        
-        // while(i < M-1){
-        //     ans += X[i]*vc;
+        // while(i<M-1){
+        //     answer+=X[i]*vc;
         //     i++;
         //     hzc++;
+            
         // }
-        // while(j < N-1){
-        //     ans += Y[i]*hzc;
+        //  while(j<N-1){
+        //     answer+=Y[j]*hzc;
         //     j++;
         //     vc++;
+            
         // }
+        // return answer;
         
-        // return ans;
+        
+        sort(X.begin(), X.end(), greater<int>());
+        sort(Y.begin(), Y.end(), greater<int>());
+        
+        int i = 0, j = 0, hzc = 1, vc = 1;
+        int ans = 0;
+        
+        while(i < M-1 && j < N-1){
+            if(X[i] > Y[j]){
+                ans += X[i]*vc;
+                i++;
+                hzc++;
+            }
+            else{
+                ans += Y[j]*hzc;
+                vc++;
+                j++;
+                
+            }
+        }
+        
+        while(i < M-1){
+            ans += X[i]*vc;
+            i++;
+            hzc++;
+        }
+        while(j < N-1){
+            ans += Y[j]*hzc;
+            j++;
+            vc++;
+        }
+        
+        return ans;
     }
 };
 
