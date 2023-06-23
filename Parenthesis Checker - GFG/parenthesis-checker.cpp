@@ -11,30 +11,55 @@ class Solution
     //Function to check if brackets are balanced or not.
     bool ispar(string str)
     {
-        stack<char>s;
-        for(char x:str){
-            if(x=='(' || x=='{' || x=='['){
-                s.push(x);
-            }
+        // stack<char>s;
+        // for(char x:str){
+        //     if(x=='(' || x=='{' || x=='['){
+        //         s.push(x);
+        //     }
+        //     else{
+        //         if(s.empty()){
+        //             return false;
+        //         }
+        //         else if(x==')' && s.top()!='('){
+        //             return false;
+        //         }
+        //          else if(x=='}' && s.top()!='{'){
+        //             return false;
+        //         }
+        //         else if(x==']' && s.top()!='['){
+        //             return false;
+        //         }
+        //         else{
+        //             s.pop();
+        //         }
+        //     }
+        // }
+        // return s.empty();
+        
+        stack<char> st;
+        for(auto x:str){
+            if(x == '(' || x == '{' || x == '[')
+                st.push(x);
+                
             else{
-                if(s.empty()){
+                if(st.empty())
                     return false;
-                }
-                else if(x==')' && s.top()!='('){
+                    
+                else if(x == ')' && st.top() != '(')
                     return false;
-                }
-                 else if(x=='}' && s.top()!='{'){
+                    
+                else if(x == '}' && st.top() != '{')
                     return false;
-                }
-                else if(x==']' && s.top()!='['){
+                    
+                else if(x == ']' && st.top() != '[')
                     return false;
-                }
-                else{
-                    s.pop();
-                }
+                    
+                else
+                    st.pop();
             }
         }
-        return s.empty();
+        
+        return st.empty();
     }
 
 };
