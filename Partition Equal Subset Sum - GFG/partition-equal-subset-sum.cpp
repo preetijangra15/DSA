@@ -9,31 +9,36 @@ using namespace std;
 
 class Solution{
 public:
-    
-    bool solve(int n, int* arr, int sum, int i)
-    {
-        if(sum == 0)
-            return true;
-            
-        if(sum < 0 || i >= n)
+    bool solve(int n, int *arr, int sum, int i, vector<vector<int>>& dp){
+        if(i == n || sum < 0)
             return false;
             
-        return (solve(n, arr, sum - arr[i], i+1) || solve(n, arr, sum, i+1));
+        if(sum == 0)
+            return true;
+        if(dp[i][sum] != -1)
+            return dp[i][sum];
+            
+        bool ans = solve(n, arr, sum - arr[i], i+1, dp);
+        bool ans1 = solve(n, arr, sum, i+1, dp);
+        
+        return dp[i][sum] = (ans||ans1);
     }
-    
     int equalPartition(int n, int arr[])
     {
         // code here
+        
         int sum = 0;
-        for(int i =0;i<n;i++)
+        
+        for(int i =0; i < n;i++)
             sum += arr[i];
-            
+        
         if(sum%2 != 0)
-            return 0;
-            
-        return solve(n, arr, sum/2, 0);
+            return false;
+        
+        vector<vector<int>> dp(n+1, vector<int>(sum+1, -1));  
+        sum = sum/2;
+        return solve(n, arr, sum, 0, dp);
     }
-    
 };
 
 //{ Driver Code Starts.
