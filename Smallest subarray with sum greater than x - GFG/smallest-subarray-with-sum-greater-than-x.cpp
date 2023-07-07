@@ -10,25 +10,21 @@ class Solution{
     int smallestSubWithSum(int arr[], int n, int x)
     {
         // Your code goes here   
-        int i = 0,j=0;
+        int i = 0, j=0,s=0,ans = n;
         
-        int ans = INT_MAX, sum = 0;
-        
-        while(j<n)
+        while(j < n)
         {
-            sum += arr[j];
-            
-            while(sum > x)
+            s += arr[j];
+            while(s > x && i<=j)
             {
                 ans = min(ans, j-i+1);
-                sum -= arr[i];
-                i++;
+                s-=arr[i++];
             }
             
             j++;
         }
         
-        return ans;
+        return ans == n&&n!=1? 0 : ans;
     }
 };
 
