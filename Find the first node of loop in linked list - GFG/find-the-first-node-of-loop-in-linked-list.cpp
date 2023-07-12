@@ -47,32 +47,38 @@ class Solution
     int findFirstNode(Node* head)
     {
         // your code here
+        
+         if(!head)
+            return -1;
+        
+        //detect loop
         Node *slow = head;
         Node *fast = head;
+        bool cycleFound = false;
         
-        while(fast!= NULL && fast ->next != NULL)
+        while(fast && fast -> next)
         {
-            slow = slow->next;
-            fast = fast->next->next;
+            slow = slow -> next;
+            fast = fast -> next -> next;
             
             if(slow == fast)
+            {
+                cycleFound = true;
+                slow = head;
                 break;
-                
-            
+            }
         }
         
-        if(fast == NULL || fast->next ==NULL)
+        if(!cycleFound)
             return -1;
-            
-        slow = head;
         
-        while(slow!= fast)
+        while(slow != fast)
         {
-            slow = slow ->next;
-            fast  = fast->next;
+            slow = slow -> next;
+            fast = fast -> next;
         }
         
-        return fast ->data;
+        return slow -> data;
     }
 };
 
