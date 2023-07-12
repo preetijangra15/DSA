@@ -6,91 +6,38 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
-    
-    bool bfs(int node, vector<int> adj[], unordered_map<int, bool>& visited)
-    {
+    bool bfs(int node, vector<int> adj[], unordered_map<int, bool>& visited){
+        queue<pair<int, int>> q;
+        q.push({node, -1});
         visited[node] = true;
         
-        unordered_map<int , int> parent;
-        parent[node] = -1;
-        
-        queue<int> q;
-        q.push(node);
-        
-        while(!q.empty())
-        {
-            int front = q.front();
+        while(!q.empty()){
+            int temp = q.front().first;
+            int parent = q.front().second;
+            
             q.pop();
             
-            for(auto x: adj[front])
-            {
-                if(visited[x] == true && parent[front] != x)
-                    return true;
-                    
-                else if(!visited[x])
-                {
-                    q.push(x);
-                    visited[x] = true;
-                    parent[x] = front;
+            for(auto it: adj[temp]){
+                if(!visited[it]){
+                    visited[it] = true;
+                    q.push({it, temp});
                 }
-            }
-        }
-        
-        return false;
-    }
-    
-    bool cycleDFS(int node, int parent, unordered_map<int, bool>& visited, vector<int> adj[])
-    {
-        visited[node] = true;
-        
-        for(auto x: adj[node])
-        {
-            if(!visited[x])
-            {
-                bool cycleDetected = cycleDFS(x, node, visited, adj);
-                if(cycleDetected)
+                
+                else if(parent != it)
                     return true;
             }
             
-            else if(x != parent)
-                return true;
         }
         
         return false;
     }
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
-        
-        
-        ///////BFS CODE/////
-        // unordered_map<int, bool> visited;
-        // for(int i = 0; i < V; i++)
-        // {
-        //     if(!visited[i])
-        //     {
-        //         bool ans = bfs(i, adj, visited);
-            
-        //         if(ans)
-        //             return true;
-        //     }
-        // }
-        
-        // return false;
-        
-        
-        ////////DFS CODE//////
-        
         unordered_map<int, bool> visited;
         
-        for(int i = 0; i < V; i++)
-        {
+        for(int i = 0;i<V;i++){
             if(!visited[i])
-            {
-                bool cycleDetected = cycleDFS(i, -1, visited, adj);
-                
-                if(cycleDetected)
-                    return true;
-            }
+                if(bfs(i, adj, visited)) return true;
         }
         
         return false;
