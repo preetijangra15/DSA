@@ -12,9 +12,9 @@ class Solution{
     public:
     vector<string> ans;
     
-    void solve(vector<vector<int>>& m, int n, int i, int j, string s)
-    {
-        if(i < 0 || i >= n || j < 0 ||j >= n || m[i][j] == 0)
+    void solve(vector<vector<int>>& m, int n, int i, int j, string s){
+        
+        if(i < 0 || i>= n || j < 0 || j >= n || m[i][j] == 0)
             return;
             
         if(i == n-1 && j == n-1)
@@ -24,13 +24,12 @@ class Solution{
         }
         
         m[i][j] = 0;
-        
         solve(m, n, i-1, j, s+'U');
         solve(m, n, i+1, j, s+'D');
-        solve(m, n, i, j-1, s+'L');
         solve(m, n, i, j+1, s+'R');
+        solve(m, n, i, j-1, s+'L');
         
-        m[i][j] =1;
+        m[i][j] = 1;
         
     }
     vector<string> findPath(vector<vector<int>> &m, int n) {
@@ -39,12 +38,8 @@ class Solution{
         solve(m, n, 0, 0, "");
         sort(ans.begin(), ans.end());
         
-        // if(ans.size())
-            return ans;
-            
-        //return -1;
+        return ans;
     }
-    
 };
 
     
