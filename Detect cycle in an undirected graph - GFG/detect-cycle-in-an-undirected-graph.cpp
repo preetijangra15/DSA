@@ -31,13 +31,38 @@ class Solution {
         
         return false;
     }
+    
+    bool dfs(int node, int parent, vector<int> adj[], unordered_map<int, bool>& visited){
+        visited[node] = true;
+        
+        for(auto it : adj[node]){
+            if(!visited[it]){
+                if(dfs(it, node, adj, visited) ==  true) return true;
+            }
+            
+            else if(parent != it)
+                return true;
+        }
+        
+        return false;
+    }
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
+        // unordered_map<int, bool> visited;
+        
+        // for(int i = 0;i<V;i++){
+        //     if(!visited[i])
+        //         if(bfs(i, adj, visited)) return true;
+        // }
+        
+        // return false;
+        
         unordered_map<int, bool> visited;
         
-        for(int i = 0;i<V;i++){
-            if(!visited[i])
-                if(bfs(i, adj, visited)) return true;
+        for(int i = 0;i < V;i++){
+            if(!visited[i]){
+                if(dfs(i, -1, adj, visited)) return true;
+            }
         }
         
         return false;
