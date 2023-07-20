@@ -11,23 +11,21 @@ class Solution
     int maxMeetings(int start[], int end[], int n)
     {
         // Your code here
-        vector<pair<int, int>> v;
+        vector<pair<int, int>> vect;
         
-        for(int i=0;i<n;i++)
-            v.push_back(make_pair(end[i], start[i]));
-            
-        sort(v.begin(), v.end());
+        for(int i =0;i < n;i++){
+            vect.push_back(make_pair(end[i], start[i]));
+        }
         
-        int front = v[0].first;
+        sort(vect.begin(), vect.end());
         
+        int x = vect[0].first;
         int count = 1;
         
-        for(int i = 1;i<n;i++)
-        {
-            if(front < v[i].second)
-            {
+        for(int i = 1;i < n;i++){
+            if(x < vect[i].second){
+                x = vect[i].first;
                 count++;
-                front = v[i].first;
             }
         }
         
