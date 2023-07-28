@@ -31,12 +31,14 @@ int main()
 
 void rotate(int arr[], int n)
 {
-    int x = arr[n-1];
+    vector<int> temp;
     
-    for(int i = n-1; i>=1;i--)
-    {
-        arr[i] = arr[i-1];
-    }
+    temp.push_back(arr[n-1]);
     
-    arr[0] = x;
+    for(int i =0;i < n-1;i++)
+        temp.push_back(arr[i]);
+        
+    for(int i =0;i < n;i++)
+        arr[i] = temp[i];
+        
 }
